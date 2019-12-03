@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:properties/other.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="smsAuth" class="com.rainbow.um.common.SMSauth">
+		<property name="targetUrl" value="${sms_url}"/>
+		<property name="api_key" value="${sms_key}"/>
+		<property name="api_secret" value="${sms_secret}"/>
+		<property name="from" value="${sms_from}"/>
+	</bean>
+	
+	<bean id="otp" class="com.rainbow.um.common.OtpWAS">
+		<constructor-arg value="${otp_algorithm}"/>
+		<constructor-arg value="${otp_secret_key}"/>
+	</bean>
+
+
+</beans>
