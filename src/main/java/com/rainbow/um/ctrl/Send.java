@@ -25,17 +25,19 @@ public class Send {
 	@ResponseBody
 	@RequestMapping(value = "/send.do", method = RequestMethod.GET)
 	public String send(HttpServletRequest request) throws Exception {
-		String to = (String)request.getAttribute("phone");
+		String to = (String)request.getParameter("phone");
 		
 		String auth = otp.create(to, new Date().getTime());
 		String text = to+"님의 인증 번호는 [" + auth +"] 입니다.";
-		
+
 		HashMap<String, String> message = new HashMap<String, String>();
 		message.put("to", to);
 		message.put("text", text);
 		
 		System.out.println(message.toString());
-
+		System.out.println(new Date().getTime());
+		System.out.println(new Date());
+		
 		return "";
 		
 //		if(sms.send(message) == 200) {

@@ -1,7 +1,5 @@
 package com.rainbow.um.common;
 
-import java.util.Date;
-
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
