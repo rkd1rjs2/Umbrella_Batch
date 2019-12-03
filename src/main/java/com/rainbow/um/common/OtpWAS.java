@@ -48,15 +48,8 @@ public class OtpWAS {
 		return truncatedHash;
 	}
 	
-	private String create(String phone, long date) throws Exception {
+	public String create(String phone, long date) throws Exception {
 		return String.format("%06d", create(date, phone));
 	}
 	
-	public boolean vaildate(String key, String phone, long date) throws Exception {
-		if(new Date().getTime()-30000> date) {
-			return false;
-		}
-		
-		return create(phone, date).equals(key);
-	}
 }
