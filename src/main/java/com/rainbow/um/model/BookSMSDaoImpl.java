@@ -6,14 +6,21 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.rainbow.um.dto.SmsData;
+
 
 @Repository
-public class BookDaoImpl implements IBookDao{
+public class BookSMSDaoImpl implements IBookSMSDao{
 
-	private String NS="com.rainbow.um.model.IBookDao."; 
+	private String NS="com.rainbow.um.model.IBookSMSDao."; 
 	
 	@Autowired
 	SqlSessionTemplate service;
+
+	@Override
+	public List<SmsData> getSmsData() {
+		return null;
+	}
 	
 	
 

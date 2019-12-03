@@ -3,9 +3,11 @@
 <configuration>
 	
 	<typeAliases>
+		<typeAlias type="com.rainbow.um.dto.SmsData"/>
 	</typeAliases>
 	
 	<mappers>
+	
 	</mappers>
 
 </configuration>
