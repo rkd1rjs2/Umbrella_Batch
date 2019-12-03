@@ -5,13 +5,20 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rainbow.um.dto.SmsData;
+
 
 
 @Service
-public class BookServiceImpl  implements IBookService{
+public class BookSMSServiceImpl  implements IBookSMSService{
 
 	@Autowired
-	IBookDao dao;
+	IBookSMSDao dao;
+
+	@Override
+	public List<SmsData> getSmsData() {
+		return dao.getSmsData();
+	}
 
 	
 	
