@@ -19,9 +19,14 @@ public class Send {
 
 	@Autowired
 	private OtpWAS otp;
+	
 	@Autowired
 	private SMSauth sms;
 	
+	@RequestMapping(value = "/init.do", method = RequestMethod.GET)
+	public String init() {
+		return "home";
+	}
 	@RequestMapping(value = "/send.do", method = RequestMethod.GET)
 	@ResponseBody
 	public String send(HttpServletRequest request) throws Exception {
