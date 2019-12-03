@@ -2,4 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.rainbow.um.model.IBookSMSDao">
 
+<select id="getSmsData" resultType="SDto">
+SELECT USER_PHONE, USER_EMAIL,BOOK_NAME 
+	FROM(SELECT USER_PHONE, USER_EMAIL,BOOK_ASEQ 
+			FROM LOANLIST AS L JOIN USERINFO AS U ON  L.USER_NUMBER=U.USER_NUMBER
+        			WHERE (DATE(LOAN_DATE)+7)-DATE(NOW())=2
+        			AND DATE(RETURN_DATE)-DATE(NOW())>=0) as P
+        JOIN (SELECT BOOK_NAME,BOOK_ASEQ FROM BOOK B1 
+       			JOIN BOOK_CONDITION C1 
+       				ON B1.BOOK_CSEQ=C1.BOOK_CSEQ) AS B
+       			ON P.BOOK_ASEQ=B.BOOK_ASEQ
+</select>
+
 </mapper>

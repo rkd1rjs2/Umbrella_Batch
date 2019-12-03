@@ -15,11 +15,11 @@ public class BookSMSDaoImpl implements IBookSMSDao{
 	private String NS="com.rainbow.um.model.IBookSMSDao."; 
 	
 	@Autowired
-	SqlSessionTemplate service;
+	SqlSessionTemplate sqlsessiontemplate;
 
 	@Override
 	public List<SmsData> getSmsData() {
-		return null;
+		return sqlsessiontemplate.selectList(NS+"getSmsData");
 	}
 	
 	

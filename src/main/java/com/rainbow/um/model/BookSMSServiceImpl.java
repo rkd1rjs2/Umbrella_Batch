@@ -17,8 +17,7 @@ public class BookSMSServiceImpl  implements IBookSMSService{
 
 	@Override
 	public List<SmsData> getSmsData() {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.getSmsData();
 	}
 
 	
