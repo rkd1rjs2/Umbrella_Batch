@@ -31,4 +31,10 @@ public class ExecuteUsingQuartz {
 	public void resvControll() {
 		
 	}
+	
+	public void bobListInsert() {
+		
+	}
+	
+	
 }
