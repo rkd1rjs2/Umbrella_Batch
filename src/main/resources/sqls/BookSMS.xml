@@ -14,4 +14,19 @@ SELECT USER_PHONE, USER_EMAIL,BOOK_NAME
        			ON P.BOOK_ASEQ=B.BOOK_ASEQ
 </select>
 
+<select id="selectOverResv" resultType="java.lang.String">
+	<![CDATA[SELECT BOOK_CSEQ FROM RESVLIST WHERE STEP = 0 AND LOAN_CHECK = 'N' AND DATE_ADD(RESV_DATE, INTERVAL 3 DAY) < NOW()]]>
+</select>
+
+<update id="updateOverResv">
+	<![CDATA[UPDATE RESVLIST SET LOAN_CHECK = 'C' WHERE RESV_SEQ IN (SELECT RESV_SEQ FROM (SELECT RESV_SEQ FROM RESVLIST WHERE STEP = 0 AND LOAN_CHECK = 'N' AND DATE_ADD(RESV_DATE, INTERVAL 3 DAY) < NOW())A)]]>
+</update>
+
+<select id="chkUser" parameterType="java.lang.String" resultType="uDto">
+	SELECT USER_PHONE, BOOK_NAME FROM (SELECT USER_PHONE, BOOK_CSEQ FROM USERINFO JOIN RESVLIST USING (USER_NUMBER) WHERE BOOK_CSEQ = #{book_cseq} AND STEP = 1 AND LOAN_CHECK = 'N')A JOIN BOOK USING(BOOK_CSEQ)
+</select>
+
+<update id="updateStep" parameterType="java.lang.String">
+	<![CDATA[UPDATE RESVLIST SET STEP = STEP-1 WHERE BOOK_CSEQ = #{book_cseq} AND LOAN_CHECK = 'N' AND STEP > 0]]>
+</update>
 </mapper>

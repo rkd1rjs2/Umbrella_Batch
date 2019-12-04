@@ -4,6 +4,7 @@
 	
 	<typeAliases>
 		<typeAlias type="com.rainbow.um.dto.SmsData" alias="SDto"/>
+		<typeAlias type="com.rainbow.um.dto.UserForSms" alias="uDto"/>
 	</typeAliases>
 	
 	<mappers>

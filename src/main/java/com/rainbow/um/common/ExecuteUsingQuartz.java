@@ -27,4 +27,8 @@ public class ExecuteUsingQuartz {
 			System.out.println(liste.get(i));
 		}
 	}
+	
+	public void resvControll() {
+		
+	}
 }

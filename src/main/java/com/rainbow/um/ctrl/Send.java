@@ -1,6 +1,5 @@
 package com.rainbow.um.ctrl;
 
-import java.util.Date;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,20 +24,24 @@ public class Send {
 	@ResponseBody
 	@RequestMapping(value = "/send.do", method = RequestMethod.GET)
 	public String send(HttpServletRequest request) throws Exception {
-		String to = (String)request.getParameter("phone");
-		
-		String auth = otp.create(to, new Date().getTime());
-		String text = to+"님의 인증 번호는 [" + auth +"] 입니다.";
-
-		HashMap<String, String> message = new HashMap<String, String>();
-		message.put("to", to);
-		message.put("text", text);
-		
-		System.out.println(message.toString());
-		System.out.println(new Date().getTime());
-		System.out.println(new Date());
-	
+		String ip = request.getRemoteAddr();
+//		if(ip.equalsIgnoreCase("192.168.1.16")) {
+			String to = (String)request.getParameter("phone");
+			long time = Long.parseLong(request.getParameter("time"));
+			
+			String auth = otp.create(to, time);
+			String text = to+"님의 인증 번호는 [" + auth +"] 입니다.";
+			
+			HashMap<String, String> message = new HashMap<String, String>();
+			message.put("to", to);
+			message.put("text", text);
+			
+			System.out.println(auth);
+//		}else {
+//			System.out.println("잘못된 사용자");
+//		}
 		return "";
+		
 		
 //		if(sms.send(message) == 200) {
 //			return "success";

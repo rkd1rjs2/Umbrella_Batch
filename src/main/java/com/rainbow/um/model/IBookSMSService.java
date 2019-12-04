@@ -8,6 +8,7 @@ import com.rainbow.um.dto.SmsData;
 
 public interface IBookSMSService {
 
- public List<SmsData>getSmsData();
- 
+	public List<SmsData> getSmsData();
+	public void sendResvSms();
+	
 }
