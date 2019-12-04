@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rainbow.um.model.IBoardDao">
+	
+
+
+
+	<!-- 추천도서 등록 -->
+	<insert id="bobInsert" parameterType="BoardDto">
+		INSERT INTO COMMONBOARD
+		(BOARD_TITLE,BOARD_CONTENT,BOARD_TYPE,BOARD_REGDATE)
+		VALUES(#{board_title},#{board_content},'B',NOW())
+	</insert>
+
+	<!-- 추천도서 지난달 조회 -->
+	<select id="bobLoanList" resultType="BobDto">
+		SELECT BOOK_NAME,COUNT(*) AS CU FROM LOANLIST T1 JOIN
+		(SELECT B1.BOOK_NAME AS BOOK_NAME, B2.BOOK_CSEQ AS BOOK_CSEQ,
+		BOOK_ASEQ FROM
+		BOOK B1 JOIN BOOK_CONDITION B2 ON
+		B1.BOOK_CSEQ=B2.BOOK_CSEQ) T2
+		ON T1.BOOK_ASEQ=T2.BOOK_ASEQ
+		WHERE
+		LEFT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH),7) = LEFT(LOAN_DATE,7)
+		GROUP BY BOOK_CSEQ
+		ORDER BY CU DESC LIMIT 0,10
+	</select>
+
+
+
+</mapper>

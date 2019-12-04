@@ -1,6 +1,7 @@
 package com.rainbow.um.common;
 
 import java.util.HashMap;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -27,6 +28,7 @@ public class ExecuteUsingQuartz {
 	
 	@Autowired
 	private SMSauth sms;
+	
 	@Autowired
 	private IBoardService boardService;
 	

@@ -5,10 +5,13 @@
 	<typeAliases>
 		<typeAlias type="com.rainbow.um.dto.SmsData" alias="SDto"/>
 		<typeAlias type="com.rainbow.um.dto.UserForSms" alias="uDto"/>
+		<typeAlias type="com.rainbow.um.dto.BoardDto" alias="BoardDto"/>
+		<typeAlias type="com.rainbow.um.dto.BobDto" alias="BobDto"/>
 	</typeAliases>
 	
 	<mappers>
 	<mapper resource="sqls/BookSMS.xml"/>
+	<mapper resource="sqls/Board.xml"/>
 	</mappers>
 
 </configuration>
