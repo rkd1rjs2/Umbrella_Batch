@@ -33,20 +33,30 @@ public class ExecuteUsingQuartz {
 	private IBoardService boardService;
 	
 	
-	public void sendMessage() throws Exception {
+	public void sendMessage(){
 		List<SmsData> lists= service.getSmsData();
 		String to = "phone";
 		String text = "내용";
-		
+
 		HashMap<String, String> message = new HashMap<String, String>();
 			for (int i = 0; i < lists.size(); i++) {
 				to=lists.get(i).getUser_phone();
-				text="[반납알림문자] 대출하신 "+lists.get(i).getBook_name()+"의 반납일이 "+lists.get(i).getMdate()+"일 남았습니다"
-						+ "연체에대한 불이익이 발생할수있으니 반납일 전까지 반납 부탁드립니다.";
+				String bookName =lists.get(i).getBook_name();
+				if(bookName.length()>8) {
+					bookName = bookName.substring(0, 6) + "..";
+				}
+				text="대출하신 "+bookName+"의 반납일이 "+lists.get(i).getMdate()+"일 남았습니다."
+						+" 반납일 전까지 반납 부탁드립니다.";
 				message.put("to", to);
 				message.put("text", text);
-				sms.send(message);
+				try {
+					//sms.send(message);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
 		}
+			service.sendResvSms();
 		
 		
 	}
