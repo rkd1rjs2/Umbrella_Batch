@@ -9,7 +9,7 @@ public class AopLogger {
 	
 	public void before(JoinPoint j) {
 		Logger logger = LoggerFactory.getLogger(j.getTarget()+"");
-		logger.info("===============logger 시작===============");
+		logger.info("------------------------logger 시작 For Batch------------------------");
 		
 		Object[] args = j.getArgs();
 		if (args != null) {
@@ -26,7 +26,7 @@ public class AopLogger {
 	//반환탑입이 있을대
 	public void afterReturning(JoinPoint j) {
 		Logger logger = LoggerFactory.getLogger(j.getTarget()+"");
-		logger.info("===============logger 종료===============");
+		logger.info("------------------------logger 종료------------------------");
 	}
 	
 	//예외가 발생 했을때

@@ -1,6 +1,7 @@
 package com.rainbow.um.ctrl;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,10 +22,10 @@ public class Send {
 	@Autowired
 	private SMSauth sms;
 	
-	@ResponseBody
 	@RequestMapping(value = "/send.do", method = RequestMethod.GET)
+	@ResponseBody
 	public String send(HttpServletRequest request) throws Exception {
-		String ip = request.getRemoteAddr();
+//		String ip = request.getRemoteAddr();
 //		if(ip.equalsIgnoreCase("192.168.1.16")) {
 			String to = (String)request.getParameter("phone");
 			long time = Long.parseLong(request.getParameter("time"));
@@ -35,17 +36,15 @@ public class Send {
 			HashMap<String, String> message = new HashMap<String, String>();
 			message.put("to", to);
 			message.put("text", text);
-			
+			System.out.println(message);
 			System.out.println(auth);
+//			if(sms.send(message) == 200) {
+				return "success";
+//			}else {
+//				return "false";
+//			}
 //		}else {
 //			System.out.println("잘못된 사용자");
-//		}
-		return "";
-		
-		
-//		if(sms.send(message) == 200) {
-//			return "success";
-//		}else {
 //			return "false";
 //		}
 	}

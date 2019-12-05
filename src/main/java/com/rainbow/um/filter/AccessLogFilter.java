@@ -30,17 +30,17 @@ public class AccessLogFilter implements Filter {
 		StringBuffer sb = new StringBuffer();
 		sb.append(remoteAddr).append(":").append(url).append(":").append(queryString).append(":").append(referer).append(":").append(userAgent);
 		
-		logger.info("------- 필터 통과중 ---------");
+		logger.info("======= 필터 통과중 =======");
 		logger.info("Log Filter : "+ sb.toString());
 		chain.doFilter(request, response);
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {
-		logger.info("--------- 필터 시작 --------");
+		logger.info("======= 필터 시작 =======");
 	}
 
 	public void destroy() {
-		logger.info("--------- 필터 끝 --------");
+		logger.info("======= 필터 끝 =======");
 	}
 
 
