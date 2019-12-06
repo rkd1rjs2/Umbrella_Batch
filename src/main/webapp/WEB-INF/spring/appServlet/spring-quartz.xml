@@ -26,7 +26,7 @@
 		p:targetObject-ref="executeUsingQuartz" p:targetMethod="bobListInsert" p:concurrent="false"/>
 	<!-- CronTrigger 실행 주기 설정 -->
 	<bean id="triggerFactoryBeanMonth" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean"
-		p:jobDetail-ref="jobFactoryBean" p:cronExpression="00 00 6 1 * ?"/>
+		p:jobDetail-ref="jobFactoryBeanMonth" p:cronExpression="00 00 6 1 * ?"/>
 	<!-- 설정한 CronTrigger 실행-->
 	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean"
 		p:triggers-ref="triggerFactoryBeanMonth" />
