@@ -1,7 +1,6 @@
 package com.rainbow.um.ctrl;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,8 +24,8 @@ public class Send {
 	@RequestMapping(value = "/send.do", method = RequestMethod.GET)
 	@ResponseBody
 	public String send(HttpServletRequest request) throws Exception {
-//		String ip = request.getRemoteAddr();
-//		if(ip.equalsIgnoreCase("192.168.1.16")) {
+		String ip = request.getRemoteAddr();
+		if(ip.equalsIgnoreCase("52.79.168.119")) {
 			String to = (String)request.getParameter("phone");
 			long time = Long.parseLong(request.getParameter("time"));
 			
@@ -38,15 +37,13 @@ public class Send {
 			message.put("text", text);
 			System.out.println(message);
 			System.out.println(auth);
-//			if(sms.send(message) == 200) {
-				return "success";
-//			}else {
-//				return "false";
-//			}
-//		}else {
-//			System.out.println("잘못된 사용자");
-//			return "false";
-//		}
+			if(sms.send(message) == 200) {
+				return auth;
+			}else {
+				return "false";
+			}
+		}else {
+			return "올바른 접속이 아닙니다.";
+		}
 	}
-	
 }
